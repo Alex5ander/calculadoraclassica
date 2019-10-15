@@ -28,11 +28,12 @@
 			width:100%;
 			height:100%;
 			font-weight:bold;
+			user-select:none;
 			transition:.2s cubic-bezier(0.5, 1, 0.5, 1);
 		}
 		table{
 			width:100%;
-			height:80%;
+			height:74%;
 		}
 		tr{
 			width:100%;
@@ -150,7 +151,7 @@
 			if(result && ope == "="){
 				result = false;
 				v1 = null;
-				v2 = null;
+				//v2 = null;
 			}
 			if(visor == false){
 				display.value = "0";
@@ -193,29 +194,42 @@
 					this.classList.add("selecionado");
 				}
 			}
-			if(v1 == null){
-				v1 = parseFloat(display.value);
+			if(ope != "="){
+				if(v1 == null){
+					v1 = parseFloat(display.value);
+					visor = false;
+				}else if(visor){
+					v2 = parseFloat(display.value);
+					result = calcular(operador, v1, v2);
+					display.value = result;
+					v1 = result;
+					visor = false;
+					result = false;
+				}
 				operador = this.value;
-				visor = false;
-			}else if(this.value != "=" && visor){
-				v2 = parseFloat(display.value);
-				result = calcular(operador, v1, v2);
-				operador = this.value;
-				display.value = result;
-				v1 = result;
-				visor = false;
-				result = false;
-			}else if(this.value != "=" && visor == false){
-				operador = this.value;
-			}else{
+			}else if(v1 != null){
 				if(visor){
 					v2 = parseFloat(display.value);
+				}
+				if(v2 == null){
+					if(operador == "-" || operador == "+"){
+						v2 = parseFloat(display.value);
+						v1 = 0;
+					}else{
+						v2 = parseFloat(display.value);
+					}
 				}
 				result = calcular(operador, v1, v2);
 				display.value = result;
 				v1 = result;
 				visor = false;
 				deletar.textContent = "Limpar";
+			}else{
+				v1 = parseFloat(display.value);
+				result = calcular(operador, v1, v2);
+				display.value = result;
+				v1 = result;
+				visor = false;
 			}
 		}
 		
@@ -228,18 +242,12 @@
 				return n1 * n2;
 			}else if(operador == "/"){
 				if(n2 == 0){
-					return n1;
+					return "Erro";
 				}else{
 					return n1 / n2; 
 				}
 			}else{
-				if(n1 == null){
-					return 0;
-				}else if(n2 == null && n1 != null){
-					return n1;
-				}else{
-					return n2;
-				}
+				return parseFloat(display.value);
 			}
 		}
 		
