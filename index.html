@@ -24,12 +24,14 @@
 			color:white;
 			font-size:2em;
 			user-select:none;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
 			outline:none;
 			width:100%;
 			height:100%;
 			font-weight:bold;
-			user-select:none;
 			transition:.2s cubic-bezier(0.5, 1, 0.5, 1);
+			-webkit-transition:.2s cubic-bezier(0.5, 1, 0.5, 1);
 		}
 		table{
 			width:100%;
@@ -39,12 +41,15 @@
 			width:100%;
 		}
 		.btn:active{
-			background-color:#50ffc2ff;
+			background-color:rgb(80, 255, 194);
 			border-color:white;
 		}
 		#display{
 			text-decoration:none;
 			user-select:none;
+			user-select:none;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
 			color:white;
 			border:none;
 			padding:0;
@@ -53,7 +58,7 @@
 			font-size:3em;
 			font-weight:bold;
 			outline:none;
-			background-color:rgba(255, 255, 255, .4);
+			background-color:rgba(255, 255, 255, .5);
 		}
 		.selecionado{
 			background-color:rgba(255, 255, 255, .3);
@@ -101,6 +106,15 @@
 		for(var i = 0; i < 10; i++){
 			var n = document.getElementById("btn_"+i);
 			n.onclick = inserirNumero;
+			n.addEventListener("touchstart", function(e){
+				this.style.backgroundColor = "rgb(80, 255, 194)";
+				this.style.borderColor = "white";
+				this.style.transition = ".2s cubic-bezier(0.5, 1, 0.5, 1)";
+			}); 
+			n.addEventListener("touchend", function(e){
+				this.style.borderColor = "transparent";
+				this.style.backgroundColor = "rgba(255, 255, 255, .1)";
+			}); 
 		}
 		
 		window.addEventListener("resize", resize);
