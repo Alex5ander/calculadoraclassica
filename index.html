@@ -6,8 +6,10 @@
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no"/>
 	<title>Calculadora Clássica</title>
 	<link rel="icon" type="image/png" href="icon.png"/>
+	<script src="cordova.js"></script>
 	<style>
 		body{
+			text-align:right;
 			background-color:coral;
 		}
 		#container{
@@ -18,7 +20,7 @@
 		.btn{
 			text-align:center;
 			padding:0;
-			background-color:rgba(255, 255, 255, .1);
+			background-color:rgb(255, 140, 98);
 			border:.1em solid;
 			border-color:transparent;
 			color:white;
@@ -34,6 +36,7 @@
 			-webkit-transition:.2s cubic-bezier(0.5, 1, 0.5, 1);
 		}
 		table{
+			table-layout:fixed;
 			width:100%;
 			height:74%;
 		}
@@ -54,11 +57,15 @@
 			border:none;
 			padding:0;
 			width:100%;
-			text-align:right;
 			font-size:3em;
 			font-weight:bold;
 			outline:none;
 			background-color:rgba(255, 255, 255, .5);
+		}
+		#display::before{
+			position:absolute;
+			display:block;
+			content:attr(data-operador);
 		}
 		.selecionado{
 			background-color:rgba(255, 255, 255, .3);
@@ -73,7 +80,7 @@
 
 <body>
 	<div id="container">
-		<input id="display" type="text" disabled placeholder="0" value="0"/>
+		<output id="display" data-operador disabled value="0">0</output>
 		<button class="btn" id="delete" >Excluir</button>
 		<table>
 			<tr>
@@ -197,6 +204,7 @@
 			e.preventDefault();
 			//salva operador usado;
 			ope = this.value;
+			display.dataset.operador = ope;
 			for(var i = 0; i < operadores.length; i++){
 				if(operadores[i].classList.contains("selecionado") && this.id != operadores[i].id){
 					operadores[i].classList.remove("selecionado");
@@ -209,6 +217,7 @@
 				}
 			}
 			if(ope != "="){
+				v2 = null;
 				if(v1 == null){
 					v1 = parseFloat(display.value);
 					visor = false;
@@ -229,7 +238,8 @@
 					if(operador == "-" || operador == "+"){
 						v2 = parseFloat(display.value);
 						v1 = 0;
-					}else{
+					}else if(operador == "*" || operador == "/"){
+						v1 = parseFloat(display.value);
 						v2 = parseFloat(display.value);
 					}
 				}
@@ -267,8 +277,10 @@
 		
 		function excluir(e){
 			e.preventDefault();
-			if(result){
+			if(deletar.textContent == "Limpar"){
 				display.value = "0";
+				ope = null;
+				display.dataset.operador = "";
 				visor = false;
 				v1 = null;
 				v2 = null;
