@@ -11,20 +11,16 @@ for(var i = 0; i < btns.length; i++){
 		}
 	}
 	n.addEventListener("touchstart", function(e){
-		this.style.backgroundColor = "white";
-		this.style.borderColor = "rgb(255, 140, 98)";
-		this.style.color = "rgb(255, 140, 98)";
-		this.style.transition = ".2s ease-out";
+		this.style.opacity = ".3";
 	}); 
 	n.addEventListener("touchend", function(e){
-		this.style.backgroundColor = "rgb(255, 140, 98)";
-		this.style.borderColor = "transparent";
-		this.style.color = "white";
+		this.style.opacity = "1";
 	}); 
 }
-btns = [];
+delete btns;
+delete i;
+delete n;
 window.addEventListener("resize", resize);
-
 function resize(){
 	var width = window.innerWidth;
 	var height = window.innerHeight;
@@ -43,7 +39,6 @@ var multiplicacao = document.getElementById("btn_*");
 var subtracao = document.getElementById("btn_-");
 var adicao = document.getElementById("btn_+");
 var igual = document.getElementById("btn_=");
-var operadores = [divisao, multiplicacao, subtracao, adicao, igual];
 var ponto = document.getElementById("btn_.");
 var display = document.getElementById("display");
 var deletar = document.getElementById("delete");
@@ -92,15 +87,6 @@ function inserirSimbolo(e){
 	//salva operador usado;
 	ope = this.value;
 	display.dataset.operador = ope;
-	for(var i = 0; i < operadores.length; i++){
-		if(operadores[i].classList.contains("selecionado") && this.id != operadores[i].id){
-			operadores[i].classList.remove("selecionado");
-			this.classList.add("selecionado");
-			break;
-		}else{
-			this.classList.add("selecionado");
-		}
-	}
 	if(ope != "="){
 		v2 = null;
 		if(v1 == null){
@@ -171,12 +157,6 @@ function excluir(e){
 		v2 = null;
 		operador = false;
 		result = false;
-		for(var i = 0; i < operadores.length; i++){
-			if(operadores[i].classList.contains("selecionado")){
-				operadores[i].classList.remove("selecionado");
-				break;
-			}
-		}
 	}else if(result == false){
 		if(display.value.length -1 != 0){
 			display.value = display.value.slice(0, display.value.length - 1);
