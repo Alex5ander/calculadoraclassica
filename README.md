@@ -5,4 +5,5 @@
 
 ![Portrait](portrait.png)
 
-[Executar a Calculadora](https://alex5ander.github.io/calculadoraclassica)
+[Executar a calculadora no browser](https://alex5ander.github.io/calculadoraclassica)
+[Baixar a calculadora para android](https://calculadora-classica.br.aptoide.com/)
