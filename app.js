@@ -2,6 +2,7 @@
 var hamburguericon = document.getElementById("hamburguericon");
 var closeConfig = document.getElementById("close");
 var saveConfig = document.getElementById("save");
+
 var background = document.getElementById("background");//cor de fundo;
 var bg_action = document.getElementById("bg_action");//cor de fundo dos botões de ação
 var btn_number_bg = document.getElementById("btn_number_bg");//cor de fundo dos botões n
@@ -29,11 +30,16 @@ saveConfig.onclick = function(e){
 function addStyle(){
 	var config = JSON.parse(localStorage.getItem("config"));
 	if(config){
+		background.value = config.background;
+		bg_action.value = config.bg_action;
+		btn_number_bg.value = config.btn_number_bg;
+		color_number.value = config.color_number;
 		document.getElementById("container").style.backgroundColor = config.background;
 		document.getElementById("table").style.backgroundColor = config.background;
 		document.getElementById("display_bg").style.backgroundColor = config.background;
 		document.getElementById("display").style.color = config.color_number;
 		document.getElementById("mobilemenu").style.backgroundColor = config.bg_action;
+		document.getElementById("mobilemenu").style.borderColor = config.color_number;
 		document.getElementById("config").style.backgroundColor = config.bg_action;
 		hamburguericon.style.backgroundColor = config.bg_action;
 		hamburguericon.style.color = config.color_number;
