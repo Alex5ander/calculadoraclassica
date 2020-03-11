@@ -1,38 +1,11 @@
 ﻿var btns = document.getElementsByClassName("btn");
-for(var i = 0; i < btns.length; i++){
-	var n = btns[i];
-	if(n.value){
-		if(isNaN(n.value) == false){
-			n.onclick = inserirNumero;
-		}else if(n.value == "."){
-			n.onclick = inserirPonto;
-		}else{
-			n.onclick = inserirSimbolo;
-		}
-	}
-	n.addEventListener("touchstart", function(e){
-		this.style.opacity = ".3";
-	}); 
-	n.addEventListener("touchend", function(e){
-		this.style.opacity = "1";
-	}); 
-}
-delete btns;
-delete i;
-delete n;
-window.addEventListener("resize", resize);
-function resize(){
-	var width = window.innerWidth;
-	var height = window.innerHeight;
-	
-	var size = Math.min(width, height) * .1;
-	
-	var botoes = document.getElementsByClassName("btn");
-	for(var i = 0; i < botoes.length; i++){
-		botoes[i].style.fontSize = size+"px";
-	}
-	display.style.fontSize = size + "px";
-}
+var hamburguericon = document.getElementById("hamburguericon");
+var closeConfig = document.getElementById("close");
+var saveConfig = document.getElementById("save");
+var background = document.getElementById("background");//cor de fundo;
+var bg_action = document.getElementById("bg_action");//cor de fundo dos botões de ação
+var btn_number_bg = document.getElementById("btn_number_bg");//cor de fundo dos botões n
+var color_number = document.getElementById("color_number");//cor dos números
 
 var divisao = document.getElementById("btn_/");
 var multiplicacao = document.getElementById("btn_*");
@@ -42,6 +15,74 @@ var igual = document.getElementById("btn_=");
 var ponto = document.getElementById("btn_.");
 var display = document.getElementById("display");
 var deletar = document.getElementById("delete");
+
+saveConfig.onclick = function(e){
+	var config = {
+		background:background.value,
+		bg_action:bg_action.value,
+		btn_number_bg:btn_number_bg.value,
+		color_number:color_number.value,
+	}
+	localStorage.setItem("config", JSON.stringify(config));
+	addStyle();
+}
+function addStyle(){
+	var config = JSON.parse(localStorage.getItem("config"));
+	if(config){
+		document.getElementById("container").style.backgroundColor = config.background;
+		document.getElementById("table").style.backgroundColor = config.background;
+		document.getElementById("display_bg").style.backgroundColor = config.background;
+		document.getElementById("display").style.color = config.color_number;
+		document.getElementById("mobilemenu").style.backgroundColor = config.bg_action;
+		document.getElementById("config").style.backgroundColor = config.bg_action;
+		hamburguericon.style.backgroundColor = config.bg_action;
+		hamburguericon.style.color = config.color_number;
+		deletar.style.backgroundColor = config.bg_action;
+		deletar.style.color = config.color_number;
+		for(var i = 0; i < btns.length; i++){
+			if(btns[i].value){
+				if(isNaN(btns[i].value) == false){
+					btns[i].style.backgroundColor = config.btn_number_bg;
+					btns[i].style.color = config.color_number;
+				}else if(btns[i].value == "."){
+					btns[i].style.backgroundColor = config.btn_number_bg;
+					btns[i].style.color = config.color_number;
+				}else{
+					btns[i].style.backgroundColor = config.bg_action;
+					btns[i].style.color = config.color_number;
+				}
+			} 
+		}
+	}
+}
+addStyle();
+closeConfig.onclick = function(e){
+	document.getElementById("config").style.display = "none";
+}
+hamburguericon.onclick = function(e){
+	var d = document.getElementById("config");
+	if(d.style.display == "none" || d.style.display == ""){
+		d.style.display = "block";
+	}
+}
+
+for(var i = 0; i < btns.length; i++){
+	if(btns[i].value){
+		if(isNaN(btns[i].value) == false){
+			btns[i].onclick = inserirNumero;
+		}else if(btns[i].value == "."){
+			btns[i].onclick = inserirPonto;
+		}else{
+			btns[i].onclick = inserirSimbolo;
+		}
+	}
+	btns[i].addEventListener("touchstart", function(e){
+		this.style.opacity = ".3";
+	}); 
+	btns[i].addEventListener("touchend", function(e){
+		this.style.opacity = "1";
+	}); 
+}
 deletar.onclick = excluir;
 var visor = false;
 var v1 = null;
@@ -54,7 +95,6 @@ function inserirNumero(e){
 	if(result && ope == "="){
 		result = false;
 		v1 = null;
-		//v2 = null;
 	}
 	if(visor == false){
 		display.value = "0";
@@ -81,7 +121,6 @@ function inserirPonto(e){
 	}
 	visor = true;
 }
-
 function inserirSimbolo(e){
 	e.preventDefault();
 	//salva operador usado;
@@ -127,7 +166,6 @@ function inserirSimbolo(e){
 		visor = false;
 	}
 }
-
 function calcular(operador, n1, n2){
 	if(operador == "+"){
 		return n1 + n2;
@@ -145,7 +183,6 @@ function calcular(operador, n1, n2){
 		return parseFloat(display.value);
 	}
 }
-
 function excluir(e){
 	e.preventDefault();
 	if(deletar.textContent == "Limpar"){
@@ -166,5 +203,3 @@ function excluir(e){
 	}
 	deletar.textContent = "Excluir";
 }
-
-window.onload = resize;

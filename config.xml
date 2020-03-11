@@ -22,6 +22,7 @@
   <preference name="ShowTitle" value="false" />
   <preference name="HideKeyboardFormAccessoryBar" value="true" />
   <preference name="Fullscreen" value="false" />
+  <preference name="Orientation" value="portrait" />
   <preference name="android-build-tool" value="ant|gradle" />
   <preference name="android-installLocation" value="auto" />
   <preference name="android-minSdkVersion" value="8" />

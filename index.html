@@ -15,7 +15,7 @@
 			position:absolute;
 			text-align:right;
 			margin:0;
-			background-color:gray;
+			background-color:white;
 			width:100%;
 			height:100%;
 		}
@@ -23,15 +23,15 @@
 			position:absolute;
 			margin:0;
 			width:inherit;
-			height:85%;
+			height:inherit;
 		}
 		.btn{
 			text-align:center;
 			padding:0;
-			background-color:rgb(100, 100, 100);
-			border:.1em outset;
-			border-color:rgb(100, 100, 100);
-			color:white;
+			box-sizing:border-box;
+			background-color:white;
+			border:none;
+			color:black;
 			font-size:2em;
 			user-select:none;
 			-webkit-touch-callout: none;
@@ -46,17 +46,21 @@
 		table{
 			table-layout:fixed;
 			width:100%;
-			height:80%;
+			height:inherit;
+		}
+		table td{
+			background-color:black;
 		}
 		.btn:active{
-			opacity:.3;
+			opacity:.9;
+			border-width:.01em;
 		}
 		#display{
 			text-decoration:none;
 			user-select:none;
 			-webkit-touch-callout: none;
 			-webkit-user-select: none;
-			color:white;
+			color:black;
 			border:none;
 			padding:0;
 			width:100%;
@@ -73,21 +77,90 @@
 		}
 		#delete{
 			width:100%;
-			font-size:3em;
-			height:2em !Important;
+			font-size:2em;
+			height:100%;
 		}
-		[value="+"], [value="-"], [value="*"], [value="/"]{
-			border-color:darkred;
+		[value="+"], [value="-"], [value="*"], [value="/"], [value="="], #delete{
 			background-color:firebrick;
+		}
+		#mobilemenu{
+			background-color:firebrick;
+			width:100%;
+			height:100%;
+			text-align:left;
+			box-sizing:border-box;
+			padding:1%;
+		}
+		#mobilemenu button{
+			text-align:center;
+			border:1px solid;
+			background-color:firebrick;
+			font-size:2em;
+			width:1.5em;
+			height:1.5em;
+			padding:0;
+			font-weight:bold;
+			display:inline-block;
+			user-select:none;
+			outline:none;
+			border-radius:15%;
+		}
+		#mobilemenu button:active{
+			opacity:.3;
+		}
+		#config{
+			position:absolute;
+			z-index:999;
+			background-color:black;
+			color:white;
+			opacity:.9;
+			text-align:left;
+			width:100%;
+			height:auto;
+			font-size:.5em;
+			border:1px solid;
+			box-sizing:border-box;
+			display:none;
+		}
+		#config label, #config input, #config button{
+			font-size:1.5em;
+			margin:2%;
+		}
+		#config button{
+			border:none;
+			border-radius:.5em;
+			padding:3%;
+			font-size:2em;
+			font-weight:bold;
+			outline:none;
+		}
+		#config button:active{
+			opacity:.7;
+			text-algn:center;
+		}
+		#save{
+			background-color:rgb(75,181,67);
+		}
+		#close{
+			background-color:rgb(255,75,75);
 		}
 	</style>
 </head>
 
 <body>
 	<div id="container">
-		<output id="display" data-operador disabled value="0">0</output>
-		<button class="btn" id="delete" >Excluir</button>
-		<table>
+		<table id="table">
+			<tr>
+				<td colspan="4" style="height:10%"><div id="mobilemenu">
+					<button id="hamburguericon">&#9776;</button>
+				</div></td>
+			</tr>
+			<tr>
+				<td id="display_bg" style="background-color:white" colspan="4"><output id="display" data-operador disabled value="0">0</output></td>
+			</tr>
+			<tr>
+				<td colspan="4"><button class="btn" id="delete" >Excluir</button></td>
+			</tr>
 			<tr>
 				<td><button class="btn" id="btn_7" value="7">7</button></td>
 				<td><button class="btn" id="btn_8" value="8">8</button></td>
@@ -113,6 +186,23 @@
 				<td><button class="btn" id="btn_+" value="+">+</button></td>
 			</tr>
 		</table>
+	</div>
+	<div id="config">
+		<hr>
+		<label for="background">Cor de fundo:</label>
+		<input id="background" type="color">
+		<hr>
+		<label for="bg_action">Cor de fundo do menu e botões de ação:</label>
+		<input id="bg_action" type="color">
+		<hr>
+		<label for="btn_number_bg">Cor de fundo dos botões numéricos:</label>
+		<input id="btn_number_bg" type="color">
+		<hr>
+		<label for="color_number">Cor dos números:</label>
+		<input id="color_number" type="color">
+		<hr>
+		<button id="save">Salvar alterações</button>
+		<button id="close">Fechar</button>
 	</div>
 	<script src="app.js"></script>
 </body>
