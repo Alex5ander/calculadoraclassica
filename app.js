@@ -97,7 +97,6 @@ var result = false;
 var operador ="";
 var ope = "";
 function inserirNumero(e){
-	e.preventDefault();
 	if(result && ope == "="){
 		result = false;
 		v1 = null;
@@ -114,7 +113,6 @@ function inserirNumero(e){
 }
 
 function inserirPonto(e){
-	e.preventDefault();
 	if(visor == false){
 		display.value = "0";
 	}
@@ -128,7 +126,6 @@ function inserirPonto(e){
 	visor = true;
 }
 function inserirSimbolo(e){
-	e.preventDefault();
 	//salva operador usado;
 	ope = this.value;
 	display.dataset.operador = ope;
@@ -190,7 +187,6 @@ function calcular(operador, n1, n2){
 	}
 }
 function excluir(e){
-	e.preventDefault();
 	if(deletar.textContent == "Limpar"){
 		display.value = "0";
 		ope = null;
