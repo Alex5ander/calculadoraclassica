@@ -1,5 +1,5 @@
 # Calculadora Clássica feita em javascript
-* Exemplos executado em um dispositivo android</br>
+* Exemplos executado em um dispositivo android
 
 ![Image1](portrait1.png)
 
