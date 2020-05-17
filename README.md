@@ -1,5 +1,6 @@
 # Calculadora Clássica feita em javascript
-* Exemplos executado em um dispositivo android
+* Possui um menu de opções que possibilita a pesonalização das cores da calculadora.
+* Exemplos executado em um dispositivo android.
 
 ![Image1](portrait1.png)
 
