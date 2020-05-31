@@ -33,28 +33,6 @@
 			margin:0;
 			width:inherit;
 			height:inherit;
-			animation:loop 1.5s linear;
-			-webkit-animation:loop 1.5s linear;
-		}
-		@-webkit-keyframes loop{
-			0%{
-				display:none;
-				opacity:0;
-			}
-			100%{
-				display:block;
-				opacity:1;
-			}
-		}
-		keyframes loop{
-			0%{
-				display:none;
-				opacity:0;
-			}
-			100%{
-				display:block;
-				opacity:1;
-			}
 		}
 		.btn{
 			text-align:center;
@@ -78,6 +56,7 @@
 			table-layout:fixed;
 			width:100%;
 			height:inherit;
+			border-collapse:collapse;
 		}
 		table td{
 			background-color:black;
@@ -106,16 +85,16 @@
 			display:block;
 			content:attr(data-operador);
 		}
-		#delete{
+		#delete, #clear{
 			width:100%;
 			font-size:2em;
 			height:100%;
 		}
-		[value="+"], [value="-"], [value="*"], [value="/"], [value="="], #delete{
+		.btnaction{
 			background-color:firebrick;
 		}
 		#mobilemenu{
-			border:1px solid;
+			border:none;
 			background-color:firebrick;
 			width:100%;
 			height:100%;
@@ -125,7 +104,7 @@
 		}
 		#mobilemenu button{
 			text-align:center;
-			border:1px solid;
+			border:none;
 			background-color:firebrick;
 			font-size:2em;
 			width:1.5em;
@@ -136,6 +115,10 @@
 			user-select:none;
 			outline:none;
 			border-radius:15%;
+		}
+		#mobilemenu button img{
+			width:inherit;
+			height:inherit;
 		}
 		#mobilemenu button:active{
 			opacity:.3;
@@ -157,6 +140,10 @@
 		#config label, #config input, #config button{
 			font-size:1.5em;
 			margin:2%;
+		}
+		#config input{
+			width:10%;
+			margin:0;
 		}
 		#config button{
 			border:none;
@@ -183,55 +170,58 @@
 	<div id="container">
 		<table id="table">
 			<tr>
-				<td colspan="4" style="height:10%"><div id="mobilemenu">
-					<button id="hamburguericon">&#9776;</button>
+				<td colspan="4" style="height:10%">
+				<div id="mobilemenu">
+					<button id="hamburguericon">
+						<img src="hamburguermenu.png">
+					</button>
 				</div></td>
 			</tr>
 			<tr>
-				<td id="display_bg" style="background-color:white" colspan="4"><output id="display" data-operador disabled value="0">0</output></td>
+				<td id="display_bg" style="background-color:white; overflow:auto" colspan="4"><output id="display" data-operador disabled value="0">0</output></td>
 			</tr>
 			<tr>
-				<td colspan="4"><button class="btn" id="delete" >Excluir</button></td>
+				<td colspan="4"><button class="btn btnaction" id="delete" >Excluir</button></td>
 			</tr>
 			<tr>
 				<td><button class="btn" id="btn_7" value="7">7</button></td>
 				<td><button class="btn" id="btn_8" value="8">8</button></td>
 				<td><button class="btn" id="btn_9" value="9">9</button></td>
-				<td><button class="btn" id="btn_/" value="/">&divide;</button></td>
+				<td><button class="btn btnaction" id="btn_/" value="/">&divide;</button></td>
 			</tr>
 			<tr>
 				<td><button class="btn" id="btn_4" value="4">4</button></td>
 				<td><button class="btn" id="btn_5" value="5">5</button></td>
 				<td><button class="btn" id="btn_6" value="6">6</button></td>
-				<td><button class="btn" id="btn_*" value="*">&times;</button></td>
+				<td><button class="btn btnaction" id="btn_*" value="*">&times;</button></td>
 			</tr>
 			<tr>
 				<td><button class="btn" id="btn_1" value="1">1</button></td>
 				<td><button class="btn" id="btn_2" value="2">2</button></td>
 				<td><button class="btn" id="btn_3" value="3">3</button></td>
-				<td><button class="btn" id="btn_-" value="-">&minus;</button></td>
+				<td><button class="btn btnaction" id="btn_-" value="-">&minus;</button></td>
 			</tr>
 			<tr>	
 				<td><button class="btn" id="btn_0" value="0">0</button></td>
 				<td><button class="btn" id="btn_." value=".">.</button></td>
-				<td><button class="btn" id="btn_=" value="=">=</button></td>
-				<td><button class="btn" id="btn_+" value="+">+</button></td>
+				<td><button class="btn btnaction" id="btn_=" value="=">=</button></td>
+				<td><button class="btn btnaction" id="btn_+" value="+">+</button></td>
 			</tr>
 		</table>
 	</div>
 	<div id="config">
 		<hr>
 		<label for="background">Cor de fundo:</label>
-		<input id="background" type="color" value="#ffffff">
+		<input id="background" maxlength="7" placeholder="Insira valores em hexadecimal" type="text" value="">
 		<hr>
 		<label for="bg_action">Cor de fundo do menu e botões de ação:</label>
-		<input id="bg_action" type="color" value="#b22222">
+		<input id="bg_action" maxlength="7" placeholder="Insira valores em hexadecimal" type="text" value="">
 		<hr>
 		<label for="btn_number_bg">Cor de fundo dos botões numéricos:</label>
-		<input id="btn_number_bg" type="color" value="#ffffff">
+		<input id="btn_number_bg" maxlength="7" placeholder="Insira valores hexadecimal" type="text" value="">
 		<hr>
 		<label for="color_number">Cor dos números:</label>
-		<input id="color_number" type="color" value="#000000">
+		<input id="color_number" maxlength="7" placeholder="Insira valores hexadecimal" type="text" value="">
 		<hr>
 		<button id="save">Salvar alterações</button>
 		<button id="close">Fechar</button>

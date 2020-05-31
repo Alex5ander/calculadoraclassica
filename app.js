@@ -95,9 +95,8 @@ var v1 = null;
 var v2 = null;
 var result = false;
 var operador ="";
-var ope = "";
 function inserirNumero(e){
-	if(result && ope == "="){
+	if(result && operador == "="){
 		result = false;
 		v1 = null;
 	}
@@ -127,9 +126,8 @@ function inserirPonto(e){
 }
 function inserirSimbolo(e){
 	//salva operador usado;
-	ope = this.value;
-	display.dataset.operador = ope;
-	if(ope != "="){
+	display.dataset.operador = this.value;
+	if(this.value != "="){
 		v2 = null;
 		if(v1 == null){
 			v1 = parseFloat(display.value);
@@ -160,7 +158,6 @@ function inserirSimbolo(e){
 		display.value = result;
 		v1 = result;
 		visor = false;
-		deletar.textContent = "Limpar";
 	}else{
 		v1 = parseFloat(display.value);
 		result = calcular(operador, v1, v2);
@@ -187,21 +184,29 @@ function calcular(operador, n1, n2){
 	}
 }
 function excluir(e){
-	if(deletar.textContent == "Limpar"){
+	if(display.value == "Erro não é possivel dividir por zero"){
 		display.value = "0";
-		ope = null;
-		display.dataset.operador = "";
-		visor = false;
 		v1 = null;
 		v2 = null;
-		operador = false;
 		result = false;
-	}else if(result == false){
-		if(display.value.length -1 != 0){
-			display.value = display.value.slice(0, display.value.length - 1);
+		display.dataset.operador = "";
+		operador = null;
+	}else if(operador != "="){
+		if(operador){
+			display.dataset.operador = "";
+			operador = null;	
 		}else{
-			display.value = "0";
+			if(display.value.length -1 != 0){
+				display.value = display.value.slice(0, display.value.length - 1);
+			}else if(display.value.length -1 == 0){
+				if(v1 != null && display.value != v1){
+					display.value = v1;
+				}else{
+					display.value = "0";
+				}
+			}
+			v1 = null;
+			result = false;
 		}
 	}
-	deletar.textContent = "Excluir";
 }
