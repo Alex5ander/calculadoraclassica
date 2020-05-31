@@ -141,10 +141,6 @@
 			font-size:1.5em;
 			margin:2%;
 		}
-		#config input{
-			width:10%;
-			margin:0;
-		}
 		#config button{
 			border:none;
 			border-radius:.5em;
@@ -212,16 +208,16 @@
 	<div id="config">
 		<hr>
 		<label for="background">Cor de fundo:</label>
-		<input id="background" maxlength="7" placeholder="Insira valores em hexadecimal" type="text" value="">
+		<input id="background" type="color "value="">
 		<hr>
 		<label for="bg_action">Cor de fundo do menu e botões de ação:</label>
-		<input id="bg_action" maxlength="7" placeholder="Insira valores em hexadecimal" type="text" value="">
+		<input id="bg_action" type="color" value="">
 		<hr>
 		<label for="btn_number_bg">Cor de fundo dos botões numéricos:</label>
-		<input id="btn_number_bg" maxlength="7" placeholder="Insira valores hexadecimal" type="text" value="">
+		<input id="btn_number_bg" type="color" value="">
 		<hr>
 		<label for="color_number">Cor dos números:</label>
-		<input id="color_number" maxlength="7" placeholder="Insira valores hexadecimal" type="text" value="">
+		<input id="color_number" type="color" value="">
 		<hr>
 		<button id="save">Salvar alterações</button>
 		<button id="close">Fechar</button>
