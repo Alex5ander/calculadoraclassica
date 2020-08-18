@@ -90,123 +90,57 @@ for(var i = 0; i < btns.length; i++){
 	}); 
 }
 deletar.onclick = excluir;
-var visor = false;
-var v1 = null;
-var v2 = null;
-var result = false;
-var operador ="";
+deletar.ondblclick = limpar;
 function inserirNumero(e){
-	if(result && operador == "="){
-		result = false;
-		v1 = null;
+	display.value += this.value;
+}
+function inserirPonto(e){
+	var numbers = display.value.split(/\+|\-|\*|\//gim);
+	var el = numbers[numbers.length - 1];
+	var temponto = /\./gim;
+	if(!temponto.test(el)){
+		display.value += this.value;
 	}
-	if(visor == false){
-		display.value = "0";
+}
+function inserirSimbolo(e){
+	var numbers = display.value.split(/\+|\-|\*|\//gim);
+	var num = numbers[numbers.length - 1];
+	
+	var simbolos = display.value.split(/\d/gim);
+	var simb = simbolos[simbolos.length -1]
+	var temponto = /\./gim.test(simb);
+	if(temponto){
+		simb = simb.replace(/\./gim, "");
 	}
-	if(parseFloat(display.value) == 0 && display.value.match(/[.]{1}/) == null){
+	if(this.value == "="){
+		calcular();
+	}else if(this.value == "-" && display.value.length == 0){
 		display.value = this.value;
+	}else if(display.value.length <= 1 && num == ""){
+		display.value = "";
+	}else if((simb == "/" || simb == "*") && this.value == "-"){
+		display.value += this.value;
+	}else if(num == ""){
+		display.value = display.value.slice(0, display.value.length - simb.length);
+		display.value += this.value; 
 	}else{
 		display.value += this.value;
 	}
-	visor = true;
 }
-
-function inserirPonto(e){
-	if(visor == false){
-		display.value = "0";
-	}
-	if(display.value.match(/[.]{1}/) == null){
-		if(display.value == ""){
-			display.value = "0"+this.value;
-		}else{
-			display.value += this.value;
-		}
-	}
-	visor = true;
-}
-function inserirSimbolo(e){
-	//salva operador usado;
-	display.dataset.operador = this.value;
-	if(this.value != "="){
-		v2 = null;
-		if(v1 == null){
-			v1 = parseFloat(display.value);
-			visor = false;
-		}else if(visor){
-			v2 = parseFloat(display.value);
-			result = calcular(operador, v1, v2);
-			display.value = result;
-			v1 = result;
-			visor = false;
-			result = false;
-		}
-		operador = this.value;
-	}else if(v1 != null){
-		if(visor){
-			v2 = parseFloat(display.value);
-		}
-		if(v2 == null){
-			if(operador == "-" || operador == "+"){
-				v2 = parseFloat(display.value);
-				v1 = 0;
-			}else if(operador == "*" || operador == "/"){
-				v1 = parseFloat(display.value);
-				v2 = parseFloat(display.value);
-			}
-		}
-		result = calcular(operador, v1, v2);
-		display.value = result;
-		v1 = result;
-		visor = false;
-	}else{
-		v1 = parseFloat(display.value);
-		result = calcular(operador, v1, v2);
-		display.value = result;
-		v1 = result;
-		visor = false;
-	}
-}
-function calcular(operador, n1, n2){
-	if(operador == "+"){
-		return n1 + n2;
-	}else if(operador == "-"){
-		return n1 - n2; 
-	}else if(operador == "*"){
-		return n1 * n2;
-	}else if(operador == "/"){
-		if(n2 == 0){
-			return "Erro não é possivel dividir por zero";
-		}else{
-			return n1 / n2; 
-		}
-	}else{
-		return parseFloat(display.value);
+function calcular(){
+	try{
+		display.value = eval(display.value);
+	}catch(err){
+		
 	}
 }
 function excluir(e){
-	if(display.value == "Erro não é possivel dividir por zero"){
-		display.value = "0";
-		v1 = null;
-		v2 = null;
-		result = false;
-		display.dataset.operador = "";
-		operador = null;
-	}else if(operador != "="){
-		if(operador){
-			display.dataset.operador = "";
-			operador = null;	
-		}else{
-			if(display.value.length -1 != 0){
-				display.value = display.value.slice(0, display.value.length - 1);
-			}else if(display.value.length -1 == 0){
-				if(v1 != null && display.value != v1){
-					display.value = v1;
-				}else{
-					display.value = "0";
-				}
-			}
-			v1 = null;
-			result = false;
-		}
+	if(display.value == Infinity){
+		display.value = "";
+	}else if(display.value.length >= 1){
+		display.value = display.value.slice(0, display.value.length - 1);
 	}
+}
+function limpar(){
+	display.value = "";
 }
