@@ -5,7 +5,7 @@
 
 ![Image1](Screenshot_20210305-123305.png)
 
-![Image2](portrait2.png)
+![Image2](Screenshot_20210305-123348.png)
 
 [Executar a calculadora no browser](https://alex5ander.github.io/calculadoraclassica)
 
