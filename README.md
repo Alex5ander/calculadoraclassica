@@ -3,7 +3,7 @@
 * Exemplos executado em um dispositivo android.
 * PWA(Progressive Web App), ou seja o site pode ser acessado offline no dispositivo que for instalado.
 
-![Image1](portrait1.png)
+![Image1](Screenshot_20210305-123305.png)
 
 ![Image2](portrait2.png)
 
