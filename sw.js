@@ -3,7 +3,6 @@ self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_NAME).
             then(function (cache) {
-                console.log(cache)
                 return cache.addAll([
                     "/index.html",
                     "/js/app.js",
