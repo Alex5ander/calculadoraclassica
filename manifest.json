@@ -32,8 +32,14 @@
             "src": "icons/icon192x192.png",
             "type": "image/png",
             "sizes": "192x192"
+        },
+        {
+            "src": "icons/icon512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
         }
     ],
+    "prefer_related_applications": true,
     "start_url": "./",
     "scope": ".",
     "background_color": "white",

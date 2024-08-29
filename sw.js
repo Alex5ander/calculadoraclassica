@@ -10,12 +10,13 @@ self.addEventListener('install', function (event) {
                     "/js/script.js",
                     "/css/styles.css",
                     "/icon.png",
-                    "icons/icon48x48.png",
-                    "icons/icon72x72.png",
-                    "icons/icon96x96.png",
-                    "icons/icon144x144.png",
-                    "icons/icon168x168.png",
-                    "icons/icon192x192.png",
+                    "/icons/icon48x48.png",
+                    "/icons/icon72x72.png",
+                    "/icons/icon96x96.png",
+                    "/icons/icon144x144.png",
+                    "/icons/icon168x168.png",
+                    "/icons/icon192x192.png",
+                    "/icons/icon512x512.png",
                     "/manifest.json"
                 ]);
             }));
