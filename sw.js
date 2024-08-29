@@ -4,11 +4,11 @@ self.addEventListener('install', function (event) {
         caches.open(CACHE_NAME).
             then(function (cache) {
                 return cache.addAll([
-                    "/index.html",
-                    "/js/app.js",
-                    "/js/script.js",
-                    "/css/styles.css",
-                    "/manifest.json"
+                    "/calculadoraclassica/index.html",
+                    "/calculadoraclassica/js/app.js",
+                    "/calculadoraclassica/js/script.js",
+                    "/calculadoraclassica/css/styles.css",
+                    "/calculadoraclassica/manifest.json"
                 ]);
             }));
 });
