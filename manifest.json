@@ -34,9 +34,8 @@
             "sizes":"192x192"
         }
     ],
-    "start_url":"/calculadoraclassica/index.html",
+    "start_url":"index.html",
     "background_color":"white",
     "display":"standalone",
-    "scope":"/calculadoraclassica/",
     "theme_color":"#b22222"
 }
