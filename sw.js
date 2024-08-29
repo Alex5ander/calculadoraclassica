@@ -4,13 +4,7 @@ self.addEventListener('install', function (event) {
         caches.open(CACHE_NAME).
             then(function (cache) {
                 return cache.addAll([
-                    "/index.html",
-                    "/js/app.js",
-                    "/js/script.js",
-                    "/css/style.css",
-                    "/manifest.json",
-                    "/icon.png",
-                    "/hamburguermenu.png"
+                   
                 ]);
             }));
 });
