@@ -1,42 +1,41 @@
 {
-    "short_name":"Calculadora Clássica",
-    "name":"Calculadora Clássica",
-    "description":"Simples calculadora",
-    "icons":[
-		{
-            "src":"icons/icon48x48.png",
-            "type":"image/png",
-            "sizes":"48x48"
-        },
-		{
-            "src":"icons/icon72x72.png",
-            "type":"image/png",
-            "sizes":"72x72"
-        },
-		{
-            "src":"icons/icon96x96.png",
-            "type":"image/png",
-            "sizes":"96x96"
-        },
-		{
-            "src":"icons/icon144x144.png",
-            "type":"image/png",
-            "sizes":"144x144"
-        },
-		{
-            "src":"icons/icon168x168.png",
-            "type":"image/png",
-            "sizes":"168x168"
+    "short_name": "Calculadora Clássica",
+    "name": "Calculadora Clássica",
+    "description": "Simples calculadora",
+    "icons": [
+        {
+            "src": "icons/icon48x48.png",
+            "type": "image/png",
+            "sizes": "48x48"
         },
         {
-            "src":"icons/icon192x192.png",
-            "type":"image/png",
-            "sizes":"192x192"
+            "src": "icons/icon72x72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "icons/icon96x96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "icons/icon144x144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        },
+        {
+            "src": "icons/icon168x168.png",
+            "type": "image/png",
+            "sizes": "168x168"
+        },
+        {
+            "src": "icons/icon192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
         }
     ],
-    "start_url":"./index.html",
-    "scope": "./",
-    "background_color":"white",
-    "display":"standalone",
-    "theme_color":"#b22222"
+    "start_url": "/",
+    "background_color": "white",
+    "display": "standalone",
+    "theme_color": "#b22222"
 }

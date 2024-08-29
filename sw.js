@@ -4,11 +4,19 @@ self.addEventListener('install', function (event) {
         caches.open(CACHE_NAME).
             then(function (cache) {
                 return cache.addAll([
-                    "/calculadoraclassica/index.html",
-                    "/calculadoraclassica/js/app.js",
-                    "/calculadoraclassica/js/script.js",
-                    "/calculadoraclassica/css/styles.css",
-                    "/calculadoraclassica/manifest.json"
+                    "/",
+                    "/index.html",
+                    "/js/app.js",
+                    "/js/script.js",
+                    "/css/styles.css",
+                    "/icon.png",
+                    "icons/icon48x48.png",
+                    "icons/icon72x72.png",
+                    "icons/icon96x96.png",
+                    "icons/icon144x144.png",
+                    "icons/icon168x168.png",
+                    "icons/icon192x192.png",
+                    "/manifest.json"
                 ]);
             }));
 });
@@ -24,19 +32,24 @@ self.addEventListener("activate", function (event) {
         })
     );
 });
-self.addEventListener("fetch", function (event) {
-    event.respondWith(
-        (async () => {
-            const r = await caches.match(event.request);
-            console.log(`[Service Worker] Fetching resource: ${event.request.url}`);
-            if (r) {
-                return r;
-            }
-            const response = await fetch(event.request);
-            const cache = await caches.open(CACHE_NAME);
-            console.log(`[Service Worker] Caching new resource: ${event.request.url}`);
-            cache.put(event.request, response.clone());
-            return response;
-        })(),
+self.addEventListener("activate", (e) => {
+    e.waitUntil(
+        caches.keys().then((keys) => {
+            return Promise.all(keys
+                .filter(key => key != CACHE_NAME)
+                .map(key => caches.delete(key)));
+        })
+    );
+});
+self.addEventListener("fetch", (e) => {
+    e.respondWith(
+        caches.match(e.request).then(cache => {
+            return cache || fetch(e.request).then(response => {
+                return caches.open(CACHE_NAME).then(cache => {
+                    cache.put(e.request.url, response.clone());
+                    return response;
+                })
+            })
+        })
     );
 });
