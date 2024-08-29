@@ -5,12 +5,10 @@ self.addEventListener('install', function (event) {
             then(function (cache) {
                 return cache.addAll([
                     "/index.html",
-                    "./js/app.js",
-                    "./js/script.js",
-                    "./css/styles.css",
-                    "/manifest.json",
-                    "/icon.png",
-                    "/hamburguermenu.png"
+                    "/js/app.js",
+                    "/js/script.js",
+                    "/css/styles.css",
+                    "/manifest.json"
                 ]);
             }));
 });
