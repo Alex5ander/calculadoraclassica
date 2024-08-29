@@ -1,6 +1,6 @@
 if("serviceWorker" in navigator){
     window.addEventListener("load", function(e){
-        navigator.serviceWorker.register("/calculadoraclassica/sw.js", { scope: "/calculadoraclassica" }).
+        navigator.serviceWorker.register("sw.js").
         then((registration) => {
             console.log(registration);
         }, (err) => {
